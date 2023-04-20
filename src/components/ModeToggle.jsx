@@ -2,6 +2,7 @@ import { Sun as SunIcon } from "heroicons-react";
 import { Moon as MoonIcon } from "heroicons-react";
 
 export const ModeToggle = () => {
+  // Function temporarily disables CSS transitions
   const disableTransitionsTemporarily = () => {
     document.documentElement.classList.add("[&_*]:!transition-none");
     window.setTimeout(() => {
@@ -9,20 +10,24 @@ export const ModeToggle = () => {
     }, 0);
   };
 
+  // Function that toggles between light and dark mode
   const toggleMode = () => {
     disableTransitionsTemporarily();
 
+     // Check if the system prefers dark mode
     let darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     let isSystemDarkMode = darkModeMediaQuery.matches;
-    let isDarkMode = document.documentElement.classList.toggle("dark");
 
+    // Toggle the dark mode class on the document element and save to local storage
+    let isDarkMode = document.documentElement.classList.toggle("dark");
     if (isDarkMode === isSystemDarkMode) {
       delete window.localStorage.isDarkMode;
     } else {
       window.localStorage.isDarkMode = isDarkMode;
     }
   };
-
+  
+  // Render a button with SunIcon and MoonIcon components inside
   return (
     <button
       type="button"
