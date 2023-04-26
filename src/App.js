@@ -1,5 +1,6 @@
 import Header from "./components/Header";
 import { ModeToggle } from "./components/ModeToggle";
+import SonicMemory from "./components/SonicMemory"
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         Living in Hamburg
       </h1>
       <h2 className="text-red-900 dark:text-red-500">Hamburg</h2>
+      <SonicMemory />
     </div>
   );
 };
