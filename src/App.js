@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import { ModeToggle } from "./components/ModeToggle";
 import SonicMemory from "./components/SonicMemory"
+import SoundMatchGame from "./components/SoundMatchGame"
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       </h1>
       <h2 className="text-red-900 dark:text-red-500">Hamburg</h2>
       <SonicMemory />
+      <SoundMatchGame />
     </div>
   );
 };
