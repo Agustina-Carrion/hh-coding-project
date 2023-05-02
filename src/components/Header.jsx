@@ -5,7 +5,7 @@ export default function Header() {
 
   return (
     <>
-      <nav className="p-2 max-w-2xl mx-auto bg-zinc-300 rounded-full shadow-md md:flex sm:justify-center space-x-4 hidden">
+      <nav className="p-2 max-w-2xl mx-auto bg-zinc-300 rounded-full shadow-md lg:flex sm:justify-center space-x-4 hidden">
         {[
           ["Home", "/dashboard"],
           ["Photos", "/photos"],
