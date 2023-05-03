@@ -1,3 +1,4 @@
+
 import Header from "./components/Header";
 import { ModeToggle } from "./components/ModeToggle";
 
@@ -6,6 +7,7 @@ const App = () => {
     <div className="bg-purple-300 dark:bg-black w-screen h-screen">
       <div className="flex justify-between p-5">
         <Header />
+        {/* <i className="fa-solid fa-burger"></i> */}
         <ModeToggle />
       </div>
       <h1 className="text-purple-900 dark:text-white font-bold text-4xl">
