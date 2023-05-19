@@ -29,7 +29,6 @@ h1 {
   font-size: 36px;
   margin-bottom: 20px;
 }
-
 .board {
   display: flex;
   flex-wrap: wrap;
@@ -62,6 +61,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: rotateY(0deg);
 }
 
 .card-front img {
@@ -81,11 +81,11 @@ h1 {
   width: 80%;
 }
 
-.card.flipped .card-front {
+.card-front.flipped {
   transform: rotateY(-180deg);
 }
 
-.card.flipped .card-back {
+.card-back.flipped {
   transform: rotateY(0);
 }
 
