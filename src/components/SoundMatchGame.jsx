@@ -29,58 +29,69 @@ function SoundMatchGame() {
   const [board, setBoard] = useState([]); // Represents the game board
   const [selected, setSelected] = useState([]); // Represents selected card(s)
   const [matched, setMatched] = useState([]); // Represents matched cards
+  const [gameOver, setGameOver] = useState(false);
 
-  // generate a new game board when the component mounts
   useEffect(() => {
-    const soundPairs = SOUNDS.concat(SOUNDS); // create a pair for each sound
-    const shuffledSounds = shuffleArray(soundPairs); // shuffle the pairs
-    const newBoard = shuffledSounds.map((sound, index) => ({ // map each sound object to a new object with additional properties
+    newGame();
+  }, []);
+
+  const newGame = () => {
+    const soundPairs = SOUNDS.concat(SOUNDS);
+    const shuffledSounds = shuffleArray(soundPairs);
+    const newBoard = shuffledSounds.map((sound, index) => ({
       id: index,
       sound: sound.name,
       file: sound.file,
       flipped: false,
     }));
-    setBoard(newBoard); // set the state with the newly created game board
-    setSelected([]); // reset the selected cards array
-    setMatched([]); // reset the matched cards array
-  }, []);
+    setBoard(newBoard);
+    setSelected([]);
+    setMatched([]);
+    setGameOver(false);
+  };
 
-  console.log(selected)
-  // Handle a card being clicked
   function handleCardClick(card) {
-    // If no card has been selected yet
+    if (matched.includes(card.id) || selected.includes(card.id)) return;
+    
     if (selected.length === 0) {
-      setSelected([card.id, card.sound]);
-    // If two cards have already been selected
+      setSelected([card.id]);
+    } else if (selected.length === 1) {
+      if (board[selected[0]].sound === card.sound) {
+        setMatched((prevState) => [...prevState, selected[0], card.id]);
+        setSelected([]);
+      } else {
+        setSelected([selected[0], card.id]);
+      }
     } else if (selected.length === 2) {
-      // Flip both cards back over
-      setBoard((prevState) =>
-        prevState.map((card) => ({
-          ...card,
-          flipped: matched.includes(card.id) ? true : false,
-        }))
-      );
-      setSelected([]); // reset the selected cards array
-      // If a card has already been selected and the newly selected card matches the previously selected card
-      } else if (selected[1] === card.sound) {
-    } else if (selected[1] === card.sound) {
-      // Match found!
-      setMatched((prevState) => [...prevState, selected[0], card.id]);
-      setSelected([]); // reset the selected cards array
-    } else {
-      setSelected((prevState) => [...prevState, card.id, card.sound]);
+      setSelected([card.id]);
     }
-    // Flip the clicked card
+
     setBoard((prevState) =>
       prevState.map((prevCard) =>
         prevCard.id === card.id ? { ...prevCard, flipped: true } : prevCard
       )
     );
-    
-    // Play the sound file associated with the card
+
     const audioElement = new Audio(card.file);
     audioElement.play();
   }
+
+  useEffect(() => {
+    if (selected.length === 2) {
+      setTimeout(() => {
+        setBoard((prevState) =>
+          prevState.map((prevCard) =>
+            selected.includes(prevCard.id) ? { ...prevCard, flipped: false } : prevCard
+          )
+        );
+        setSelected([]);
+      }, 1000);
+    }
+    if (matched.length === SOUNDS.length * 2) {
+      setGameOver(true);
+    }
+  }, [selected, matched]);
+
   
 
   return (
@@ -89,16 +100,14 @@ function SoundMatchGame() {
       <div className="board">
         {board.map((card) => (
           <div
-            key={card.id}
-            className={`card ${matched.includes(card.id) ? 'matched' : ''}`}
-            onClick={() => {
-               // Only allow the card to be clicked if it's not already matched
-              if (!matched.includes(card.id)) handleCardClick(card);
-            }}
+          key={card.id}
+          className={`card ${matched.includes(card.id) ? 'matched' : ''}`}
+          onClick={() => {
+            // Only allow the card to be clicked if it's not already matched
+            if (!matched.includes(card.id)) handleCardClick(card);
+          }}
           >
             <div className={`card-front ${card.flipped ? 'flipped' : ''}`}>
-              {/* This is where you could add an image or something visual for the card front */}
-              {/* <img src={`../assets/images/${card.sound}.jpg`} alt={card.sound} /> */}
             </div>
             <div className={`card-back ${card.flipped ? 'flipped' : ''}`}>
                {/* The audio is associated with the card, but won't play automatically */}
@@ -107,6 +116,8 @@ function SoundMatchGame() {
           </div>
         ))}
       </div>
+      <br />
+      {gameOver && <button onClick={newGame}>New game?</button>}
     </div>
   );
 }
