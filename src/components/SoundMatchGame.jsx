@@ -99,12 +99,14 @@ function SoundMatchGame() {
       setGameOver(true);
     }
   }, [selected, matched]);
-
   
-
+  
+  
   return (
     <div className="game">
-      <h1>Sound Match Game</h1>
+      {/* todo: margin buttom; cursor pointer; dark mode adjustments; remove to subpage */}
+      {gameOver ? <h1 onClick={newGame}>New game?</h1>
+                : <h1>Sound Match Game</h1>}
       <div className="board">
         {board.map((card) => (
           <div
@@ -124,8 +126,6 @@ function SoundMatchGame() {
           </div>
         ))}
       </div>
-      <br />
-      {gameOver && <button onClick={newGame}>New game?</button>}
     </div>
   );
 }

@@ -4,7 +4,7 @@ import SoundMatchGame from "./components/SoundMatchGame"
 
 const App = () => {
   return (
-    <div className="bg-purple-300 dark:bg-black w-screen h-screen">
+    <div className="bg-purple-300 dark:bg-black w-screen h-full">
       <div className="flex justify-between p-5">
         <Header />
         <ModeToggle />
