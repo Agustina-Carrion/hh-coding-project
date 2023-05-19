@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 // Import sound files
 import horseSound from '../assets/audio/horse.mp3';
-import tadaSound from '../assets/audio/Ta_Da.mp3';
+import tadaSound from '../assets/audio/ta_da.mp3';
 import minionSound from '../assets/audio/minion_laugh.mp3';
-import drumRollSound from '../assets/audio/Drum_Roll.mp3';
+import drumRollSound from '../assets/audio/drum_roll.mp3';
+import balloonSound from '../assets/audio/balloon_squeaky.mp3';
+import minionHelloSound from '../assets/audio/minion_hello.mp3';
+import piggySound from '../assets/audio/piggy.mp3';
+import roosterSound from '../assets/audio/rooster.mp3';
 
 // create an array of sound objects
 const SOUNDS = [
@@ -12,6 +16,10 @@ const SOUNDS = [
   { name: 'tada', file: tadaSound },
   { name: 'minion', file: minionSound },
   { name: 'drum', file: drumRollSound },
+  { name: 'balloon', file: balloonSound },
+  { name: 'minionH', file: minionHelloSound },
+  { name: 'piggy', file: piggySound },
+  { name: 'rooster', file: roosterSound },
 ];
 
 // function to shuffle the array of sounds randomly
