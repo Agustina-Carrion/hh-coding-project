@@ -16,7 +16,6 @@ code {
     monospace;
 }
 
-
 .game {
   display: flex;
   flex-direction: column;
@@ -24,28 +23,25 @@ code {
   margin-top: 50px;
   font-family: sans-serif;
 }
-
-h1 {
-  font-size: 36px;
-  margin-bottom: 20px;
-}
 .board {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   max-width: 800px;
 }
-
 .card {
   position: relative;
-  width: 150px;
-  height: 150px;
+  min-width: 50px;
+  min-height: 50px;
+  width: 13.5vw;
+  height: 13.5vw;
+  max-width: 150px;
+  max-height: 150px;
   margin: 10px;
   border-radius: 10px;
   perspective: 1000px;
   cursor: pointer;
 }
-
 .card-front,
 .card-back {
   position: absolute;
@@ -55,41 +51,42 @@ h1 {
   backface-visibility: hidden;
   transition: transform 0.3s ease-in-out;
 }
-
 .card-front {
   background-color: #f2f2f2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   transform: rotateY(0deg);
 }
-
-.card-front img {
-  max-width: 100%;
-  max-height: 100%;
-}
-
 .card-back {
   background-color: #ffd633;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   transform: rotateY(180deg);
 }
-
-.card-back audio {
-  width: 80%;
-}
-
 .card-front.flipped {
   transform: rotateY(-180deg);
 }
-
 .card-back.flipped {
   transform: rotateY(0);
 }
-
-.card.matched {
-  opacity: 0.5;
+.card.matched .card-back.flipped {
   cursor: default;
+  background: linear-gradient(
+    45deg,
+    #805826,
+    #bd8f27,
+    #d9a327,
+    #bd8f27,
+    #805826
+  );
+  background-size: 500% 500%;
+  animation: gradient 12s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

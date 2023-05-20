@@ -103,10 +103,10 @@ function SoundMatchGame() {
   
   
   return (
-    <div className="game">
-      {/* todo: margin buttom; cursor pointer; dark mode adjustments; remove to subpage */}
-      {gameOver ? <h1 onClick={newGame}>New game?</h1>
-                : <h1>Sound Match Game</h1>}
+    <div className="game pb-20 px-4">
+      {/* todo: remove to subpage */}
+      {gameOver ? <h1 className='text-purple-900 dark:text-white font-bold text-center text-4xl mb-8 cursor-pointer' onClick={newGame}>New game?</h1>
+                : <h1 className='text-purple-900 dark:text-white font-bold text-center text-4xl mb-8'>Sound Match Game</h1>}
       <div className="board">
         {board.map((card) => (
           <div
