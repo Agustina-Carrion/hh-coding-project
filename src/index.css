@@ -16,13 +16,6 @@ code {
     monospace;
 }
 
-.game {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 50px;
-  font-family: sans-serif;
-}
 .board {
   display: flex;
   flex-wrap: wrap;
