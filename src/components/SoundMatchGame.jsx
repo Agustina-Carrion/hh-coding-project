@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 // Import sound files
 import horseSound from '../assets/audio/horse.mp3';
@@ -100,14 +100,12 @@ function SoundMatchGame() {
     }
   }, [selected, matched]);
   
-  
-  
   return (
     <div className="flex flex-col items-center pb-20 px-4 mt-12">
       {/* todo: rout to subpage */}
       {gameOver ? <h1 className='text-purple-900 dark:text-white font-bold text-center text-4xl mb-8 cursor-pointer' onClick={newGame}>New game?</h1>
                 : <h1 className='text-purple-900 dark:text-white font-bold text-center text-4xl mb-8'>Sound Match Game</h1>}
-      <div className="board">
+      <div className="flex flex-wrap justify-center max-w-3xl">
         {board.map((card) => (
           <div
           key={card.id}

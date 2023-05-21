@@ -16,12 +16,7 @@ code {
     monospace;
 }
 
-.board {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 800px;
-}
+/* CSS for SoundMatchGame */
 .card {
   position: relative;
   min-width: 50px;
@@ -71,7 +66,6 @@ code {
   background-size: 500% 500%;
   animation: gradient 12s ease infinite;
 }
-
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
@@ -83,3 +77,4 @@ code {
     background-position: 0% 50%;
   }
 }
+/* End of SoundMatchGame CSS */
