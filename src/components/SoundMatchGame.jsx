@@ -38,6 +38,7 @@ function SoundMatchGame() {
   const [selected, setSelected] = useState([]); // Represents selected card(s)
   const [matched, setMatched] = useState([]); // Represents matched cards
   const [gameOver, setGameOver] = useState(false);
+  const [disableClick, setDisableClick] = useState(false);
 
   useEffect(() => {
     newGame();
@@ -59,7 +60,7 @@ function SoundMatchGame() {
   };
 
   function handleCardClick(card) {
-    if (matched.includes(card.id) || selected.includes(card.id)) return;
+    if (disableClick || matched.includes(card.id) || selected.includes(card.id)) return;
     
     if (selected.length === 0) {
       setSelected([card.id]);
@@ -69,6 +70,7 @@ function SoundMatchGame() {
         setSelected([]);
       } else {
         setSelected([selected[0], card.id]);
+        setDisableClick(true);
       }
     } else if (selected.length === 2) {
       setSelected([card.id]);
@@ -93,6 +95,7 @@ function SoundMatchGame() {
           )
         );
         setSelected([]);
+        setDisableClick(false);
       }, 1000);
     }
     if (matched.length === SOUNDS.length * 2) {
