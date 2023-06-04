@@ -66,14 +66,14 @@ function SoundMatchGame() {
       setSelected([card]);
     } else if (selected.length === 1) {
       if (selected[0].sound === card.sound) {
-        setMatched((prevState) => [...prevState, selected[0], card.id]);
+        setMatched((prevState) => [...prevState, selected[0].id, card.id]);
         setSelected([]);
       } else {
         setSelected([selected[0], card]);
         setDisableClick(true);
       }
     } else if (selected.length === 2) {
-      setSelected([card.id]);
+      setSelected([card]);
     }
 
     setBoard((prevState) =>
