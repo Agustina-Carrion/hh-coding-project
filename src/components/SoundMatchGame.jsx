@@ -63,13 +63,13 @@ function SoundMatchGame() {
     if (disableClick || matched.includes(card.id) || selected.includes(card.id)) return;
     
     if (selected.length === 0) {
-      setSelected([card.id]);
+      setSelected([card]);
     } else if (selected.length === 1) {
-      if (board[selected[0]].sound === card.sound) {
+      if (selected[0].sound === card.sound) {
         setMatched((prevState) => [...prevState, selected[0], card.id]);
         setSelected([]);
       } else {
-        setSelected([selected[0], card.id]);
+        setSelected([selected[0], card]);
         setDisableClick(true);
       }
     } else if (selected.length === 2) {
@@ -91,7 +91,9 @@ function SoundMatchGame() {
       setTimeout(() => {
         setBoard((prevState) =>
           prevState.map((prevCard) =>
-            selected.includes(prevCard.id) ? { ...prevCard, flipped: false } : prevCard
+            selected.map((card) => card.id).includes(prevCard.id)
+              ? { ...prevCard, flipped: false } 
+              : prevCard
           )
         );
         setSelected([]);
