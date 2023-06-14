@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "wouter";
 
 export default function Header() {
   const [mobileNav, setMobileNav] = useState(false);
@@ -7,17 +8,17 @@ export default function Header() {
     <>
       <nav className="p-2 max-w-2xl mx-auto bg-zinc-300 rounded-full shadow-md lg:flex sm:justify-center space-x-4 hidden">
         {[
-          ["Home", "/dashboard"],
+          ["Home", "/"],
           ["Photos", "/photos"],
           ["Projects", "/projects"],
           ["About", "/about"],
         ].map(([title, url]) => (
-          <a
+          <Link
             href={url}
             className="rounded-full px-3 py-4 text-4xl text-zinc-700 font-medium hover:bg-slate-100 hover:text-slate-900"
           >
             {title}
-          </a>
+          </Link>
         ))}
       </nav>
       {/* hamburger icon in mobile view*/}
@@ -43,12 +44,12 @@ export default function Header() {
               ["Projects", "/projects"],
               ["About", "/about"],
             ].map(([title, url]) => (
-              <a
+              <Link
                 href={url}
                 className="rounded-full px-5 py-4 text-4xl text-zinc-700 font-medium hover:bg-slate-200 hover:text-slate-900"
               >
                 {title}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>
