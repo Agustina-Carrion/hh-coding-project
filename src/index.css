@@ -16,3 +16,65 @@ code {
     monospace;
 }
 
+/* CSS for SoundMatchGame */
+.card {
+  position: relative;
+  min-width: 50px;
+  min-height: 50px;
+  width: 13.5vw;
+  height: 13.5vw;
+  max-width: 150px;
+  max-height: 150px;
+  margin: 10px;
+  border-radius: 10px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+.card-front {
+  background-color: #f2f2f2;
+  transform: rotateY(0deg);
+}
+.card-back {
+  background-color: #ffd633;
+  transform: rotateY(180deg);
+}
+.card-front.flipped {
+  transform: rotateY(-180deg);
+}
+.card-back.flipped {
+  transform: rotateY(0);
+}
+.card.matched .card-back.flipped {
+  cursor: default;
+  background: linear-gradient(
+    45deg,
+    #805826,
+    #bd8f27,
+    #d9a327,
+    #bd8f27,
+    #805826
+  );
+  background-size: 500% 500%;
+  animation: gradient 12s ease infinite;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+/* End of SoundMatchGame CSS */

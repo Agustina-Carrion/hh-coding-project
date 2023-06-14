@@ -1,10 +1,11 @@
 
 import Header from "./components/Header";
 import { ModeToggle } from "./components/ModeToggle";
+import SoundMatchGame from "./components/SoundMatchGame"
 
 const App = () => {
   return (
-    <div className="bg-purple-300 dark:bg-black w-screen h-screen">
+    <div className="bg-purple-300 dark:bg-black w-screen h-full">
       <div className="flex justify-between p-5">
         <Header />
         {/* <i className="fa-solid fa-burger"></i> */}
@@ -14,6 +15,7 @@ const App = () => {
         Living in Hamburg
       </h1>
       <h2 className="text-red-900 dark:text-red-500">Hamburg</h2>
+      <SoundMatchGame />
     </div>
   );
 };
